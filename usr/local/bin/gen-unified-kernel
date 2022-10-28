@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+while read -r line; do
+    # get the package name being installed for this kernel
+    packagename=$(cat ${line%/vmlinuz}/pkgbase)
+
+    echo ":: Building Unified Kernel: ${packagename}"
+    /usr/bin/mkinitcpio -p ${packagename}
+done
